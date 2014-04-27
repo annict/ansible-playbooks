@@ -1,0 +1,7 @@
+- name: Railsを動かすのに必要なパッケージをインストールする
+  apt:
+    pkg:   '{{ item }}'
+    state: installed
+  with_items:
+    - libmysqlclient-dev
+    - imagemagick

@@ -1,0 +1,51 @@
+---
+# =============================================================================
+# User
+# =============================================================================
+
+user_name: production-user-name
+user_path: /home/production-user-name
+
+
+# =============================================================================
+# MySQL
+# =============================================================================
+
+mysql_db_name:        production_database
+mysql_user_name:      production-user-name
+mysql_user_password:  production-user-password
+mysql_root_user_name: production-root-user-name
+mysql_root_password:  production-root-user-password
+
+mysql_innodb_buffer_pool_size: 256M
+
+
+# =============================================================================
+# Ruby
+# =============================================================================
+
+ruby_gemset_name: production-gemset
+ruby_version:     2.1.1
+
+
+# =============================================================================
+# New Relic
+# =============================================================================
+
+newrelic_license_key: xxxxx....
+
+
+# =============================================================================
+# Rails
+# =============================================================================
+
+rails_env: production
+
+
+# =============================================================================
+# God
+# =============================================================================
+
+god_project_name:              production-project-name
+god_alert_email_from:          production-email
+god_alert_email_from_password: production-email-password

@@ -1,0 +1,8 @@
+- name: RVMをインストールする
+  shell: \curl -sSL https://get.rvm.io | bash -s stable
+
+- name: Rubyをインストールする
+  command: bash -lc 'rvm install {{ ruby_version }}'
+
+- name: Gemsetを作成する
+  command: bash -lc 'rvm {{ ruby_version }}@{{ ruby_gemset_name }} --create --default'

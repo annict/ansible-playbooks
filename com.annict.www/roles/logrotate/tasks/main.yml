@@ -1,0 +1,12 @@
+- name: /etc/logrotate.conf を配置する
+  template:
+    src:  logrotate.conf
+    dest: /etc/logrotate.conf
+
+- name: /etc/logrotate.d/nginx を配置する
+  template:
+    src:  '{{ item }}'
+    dest: '/etc/logrotate.d/{{ item }}'
+  with_items:
+    - nginx
+    - rails_shared

@@ -1,0 +1,10 @@
+---
+- name: ユーザの作成
+  user:
+    name:  '{{ user_name }}'
+    shell: /bin/bash
+
+- name: 作成したユーザからSSHでログインできるようにする
+  authorized_key:
+    user: '{{ user_name }}'
+    key:  '{{ lookup("file", "~/.ssh/id_rsa.pub") }}'

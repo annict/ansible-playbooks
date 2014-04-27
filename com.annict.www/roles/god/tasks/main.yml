@@ -1,0 +1,30 @@
+# http://stackoverflow.com/questions/7645918/require-no-such-file-to-load-mkmf-loaderror
+- name: ruby-devパッケージをインストールする
+  apt:
+    pkg:   ruby-dev
+    state: installed
+
+# http://stackoverflow.com/questions/22115936/install-bundler-gem-using-ansible
+- name: Godをインストールする
+  command: bash -lc 'gem install god --no-ri --no-rdoc'
+
+- name: Godの設定ファイルを格納するディレクトリを作成する
+  command: mkdir -p /etc/god/config /etc/god/contacts
+
+- name: Godの設定ファイルを配置する その1
+  template:
+    src:  config.god
+    dest: /etc/god/config.god
+
+- name: Godの設定ファイルを配置する その2
+  template:
+    src:  email.rb
+    dest: /etc/god/contacts/email.rb
+
+- name: Godの設定ファイルを配置する その3
+  template:
+    src:  delayed_job.god
+    dest: /etc/god/config/delayed_job.god
+
+# - name: Start God
+#   command: god -c /etc/god/config.god

@@ -1,0 +1,11 @@
+# http://www.mk-mode.com/octopress/2013/02/17/nginx-logrotation/
+
+/var/log/nginx/*.log {
+  # 以降に記述された処理をワイルドカードの指定に関わらず、1度だけ実行する
+  sharedscripts
+  # ログローテーション実施後に実行
+  postrotate
+    # プロセスID nginx.pid が存在しなければ、プロセスに USR1 シグナルを送ってログファイルを開き直す
+    [ ! -f /var/run/nginx.pid ] || kill -USR1 `cat /var/run/nginx.pid`
+  endscript
+}

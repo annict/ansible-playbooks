@@ -1,0 +1,12 @@
+---
+- name: shared/settings/ ディレクトリを作成する
+  command: mkdir -p {{ user_path }}/shared/settings
+
+- name: shared/sockets/ ディレクトリを作成する (Nginxで使用)
+  command: mkdir -p {{ user_path }}/shared/sockets
+
+# - name: Copy database.yml
+#   template: src=database.yml dest={{ user_path }}/shared/settings/database.yml
+#
+# - name: Copy newrelic.yml
+#   template: src=newrelic.yml dest={{ user_path }}/shared/settings/newrelic.yml

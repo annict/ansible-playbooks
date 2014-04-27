@@ -1,0 +1,21 @@
+- name: apt-get update
+  apt:
+    update_cache: yes
+
+- name: apt-get upgrade
+  apt:
+    upgrade: full
+
+- name: サーバ作るのに必要そうなパッケージをインストールする
+  apt:
+    pkg:   '{{ item }}'
+    state: installed
+  with_items:
+    - build-essential
+    - curl
+    - g++
+    - git
+    - make
+    - python-software-properties
+    - vim
+    - wget

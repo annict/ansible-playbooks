@@ -1,0 +1,17 @@
+---
+- name:  AnnictのWebサーバのセットアップ
+  hosts: web
+  user:  root
+
+  roles:
+    - common
+    - user
+    - nginx
+    - nodejs
+    - mysql
+    - ruby
+    - rails
+    - new_relic
+    - deployment
+    - god
+    - logrotate
