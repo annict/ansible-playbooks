@@ -1,0 +1,21 @@
+- name: Backup gemをインストールする
+  command: bash -lc 'gem install backup --no-ri --no-rdoc'
+
+- name: Backup gemの設定ファイルを格納するディレクトリを作成する
+  command: mkdir -p /root/Backup/models
+
+- name: Backup gemの設定ファイルを配置する その1
+  template:
+    src:  config.rb
+    dest: /root/Backup/config.rb
+
+- name: Backup gemの設定ファイルを配置する その2
+  template:
+    src:  database_backup.rb
+    dest: /root/Backup/models/database_backup.rb
+
+- name: cronの設定をする
+  cron:
+    name: 'Backup at 4am every day'
+    hour: '4'
+    job:  '/bin/bash -lc "backup perform -t database_backup"'

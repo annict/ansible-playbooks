@@ -49,3 +49,16 @@ rails_env: production
 god_project_name:              production-project-name
 god_alert_email_from:          production-email
 god_alert_email_from_password: production-email-password
+
+
+# =============================================================================
+# Backup
+# =============================================================================
+
+backup_s3_access_key_id:             production-s3-access-key
+backup_s3_secret_access_key:         production-s3-secret-access-key
+backup_s3_bucket_name:               production-s3-bucket-name
+backup_s3_bucket_path:               production-bucket-path
+backup_notifier_email_from:          production-sender-email
+backup_notifier_email_from_password: production-sender-email-password
+backup_notifier_email_to:            production-receiver-email
