@@ -45,16 +45,10 @@
     db:       '{{ postgresql_db_name }}'
     priv:     ALL
 
-- name: conf.d/ 以下の設定ファイルを読み込むようにする
-  command: sed -i -e "s/^#include_dir =/include_dir =/" /etc/postgresql/9.3/main/postgresql.conf
-
-- name: PostgreSQLの設定ファイルを配置するディレクトリを作成する
-  command: mkdir -p /etc/postgresql/9.3/main/conf.d
-
 - name: PostgreSQLの設定を更新する
   template:
-    src:   my_postgresql.conf
-    dest:  /etc/postgresql/9.3/main/conf.d/my_postgresql.conf
+    src:   postgresql.conf
+    dest:  /etc/postgresql/9.3/main/postgresql.conf
     owner: postgres
     group: postgres
     mode:  0644
