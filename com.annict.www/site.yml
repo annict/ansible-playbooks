@@ -10,6 +10,7 @@
     - nginx
     - nodejs
     - postgresql
+    - redis
     - ruby
     - rails
     - unicorn

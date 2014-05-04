@@ -1,0 +1,31 @@
+- name: Redisをダウンロードする
+  command: wget http://download.redis.io/releases/redis-2.8.3.tar.gz
+
+- name: パッケージを解凍する
+  command: tar xvzf redis-2.8.3.tar.gz
+
+- name: makeする
+  command: make chdir=redis-2.8.3
+
+- name: スクリプトファイルをコピーする
+  command: cp -f redis-2.8.3/src/{{ item }} /usr/local/bin/
+  with_items:
+    - redis-server
+    - redis-cli
+    - redis-benchmark
+    - redis-check-aof
+    - redis-check-dump
+
+- name: redis.confを修正する
+  template:
+    src:  redis.conf
+    dest: /etc/redis.conf
+
+- name: Upstartの設定ファイルを配置する
+  template:
+    src:  redis-server.conf
+    dest: /etc/init/redis-server.conf
+
+- name: Redisを起動する
+  command: start redis-server
+  ignore_errors: yes
