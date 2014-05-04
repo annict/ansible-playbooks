@@ -5,6 +5,12 @@
 - name: shared/sockets/ ディレクトリを作成する (Nginxで使用)
   command: mkdir -p {{ user_path }}/shared/sockets
 
+- name: shared/pids/ ディレクトリを作成する
+  command: mkdir -p {{ user_path }}/shared/pids
+
+- name: shared/ ディレクトリ以下のユーザ:グループ権限を変更する
+  command: chown -R {{ user_name }}:{{ user_name }} {{ user_path }}/shared
+
 # - name: Copy database.yml
 #   template: src=database.yml dest={{ user_path }}/shared/settings/database.yml
 #
