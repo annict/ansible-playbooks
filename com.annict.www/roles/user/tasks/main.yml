@@ -8,3 +8,8 @@
   authorized_key:
     user: '{{ user_name }}'
     key:  '{{ lookup("file", "~/.ssh/id_rsa.pub") }}'
+
+- name: 一部コマンドでsudoが使えるようにする
+  template:
+    src:  sudoer
+    dest: /etc/sudoers.d/{{ user_name }}
