@@ -1,0 +1,24 @@
+- name: ntpをインストールする
+  apt:
+    name:  ntp
+    state: present
+
+- name: ntp.confを編集する
+  template:
+    src:  ntp.conf
+    dest: /etc/ntp.conf
+
+- name: ntpを再起動する
+  service:
+    name:  ntp
+    state: restarted
+
+- name: タイムゾーンを変更する (/etc/localtimeを作成する)
+  copy:
+    src:  /usr/share/zoneinfo/Japan
+    dest: /etc/localtime
+
+- name: タイムゾーンを変更する (/etc/timezoneを編集する)
+  template:
+    src:  timezone
+    dest: /etc/timezone
