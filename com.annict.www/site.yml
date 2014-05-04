@@ -8,7 +8,7 @@
     - user
     - nginx
     - nodejs
-    - mysql
+    - postgresql
     - ruby
     - rails
     - new_relic
