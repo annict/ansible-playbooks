@@ -12,6 +12,7 @@
     - postgresql
     - ruby
     - rails
+    - unicorn
     - new_relic
     - deployment
     - god

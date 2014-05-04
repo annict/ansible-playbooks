@@ -1,0 +1,7 @@
+- name: Unicornを再起動するinitスクリプトを配置する
+  template:
+    src:   init_script
+    dest:  /etc/init.d/unicorn_{{ user_name }}_{{ rails_env }}
+    owner: '{{ user_name }}'
+    group: '{{ user_name }}'
+    mode:  0751
