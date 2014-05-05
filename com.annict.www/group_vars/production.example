@@ -8,19 +8,6 @@ user_path: /home/production-user-name
 
 
 # =============================================================================
-# MySQL
-# =============================================================================
-
-mysql_db_name:        production_database
-mysql_user_name:      production-user-name
-mysql_user_password:  production-user-password
-mysql_root_user_name: production-root-user-name
-mysql_root_password:  production-root-user-password
-
-mysql_innodb_buffer_pool_size: 256M
-
-
-# =============================================================================
 # Ruby
 # =============================================================================
 
@@ -33,6 +20,17 @@ ruby_version:     2.1.1
 # =============================================================================
 
 newrelic_license_key: xxxxx....
+
+
+# =============================================================================
+# PostgreSQL
+# =============================================================================
+
+postgresql_db_name:            production-db-name
+postgresql_user_name:          production-user-name
+postgresql_user_password:      production-user-password
+postgresql_root_user_name:     production-root-user-name
+postgresql_root_user_password: production-root-user-password
 
 
 # =============================================================================
