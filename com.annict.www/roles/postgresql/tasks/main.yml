@@ -30,20 +30,26 @@
     password:        '{{ postgresql_root_user_password }}'
     role_attr_flags: 'CREATEDB,CREATEROLE,REPLICATION,SUPERUSER'
 
+- name: アプリケーションで使用するユーザを作成する
+  postgresql_user:
+    name:     '{{ postgresql_user_name }}'
+    password: '{{ postgresql_user_password }}'
+
 - name: アプリケーションで使用するデータベースを作成する
   postgresql_db:
     name:       '{{ postgresql_db_name }}'
+    owner:      '{{ postgresql_user_name }}'
     encoding:   UTF-8
     lc_collate: C
     lc_ctype:   C
     template:   template0
 
-- name: アプリケーションで使用するユーザを作成する
-  postgresql_user:
-    name:     '{{ postgresql_user_name }}'
-    password: '{{ postgresql_user_password }}'
-    db:       '{{ postgresql_db_name }}'
-    priv:     ALL
+- name: ユーザにデータベースを操作する権限を与える
+  postgresql_privs:
+    db:   '{{ postgresql_db_name }}'
+    type: database
+    priv: ALL
+    role: '{{ postgresql_user_name }}'
 
 - name: PostgreSQLの設定を更新する
   template:
