@@ -16,6 +16,7 @@
 
 - name: cronの設定をする
   cron:
-    name: 'Backup at 4am every day'
-    hour: '4'
-    job:  '/bin/bash -lc "backup perform -t database_backup"'
+    name:   'Backup at 4am every day'
+    hour:   '4'
+    minute: '0'
+    job:    '/bin/bash -lc "backup perform -t database_backup"'
