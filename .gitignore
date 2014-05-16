@@ -1,3 +1,5 @@
+.DS_Store
+
 /com.annict.www/production
 /com.annict.www/staging
 /com.annict.www/group_vars/production
