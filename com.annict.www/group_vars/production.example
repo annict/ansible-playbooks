@@ -60,5 +60,6 @@ backup_s3_secret_access_key:         production-s3-secret-access-key
 backup_s3_bucket_name:               production-s3-bucket-name
 backup_s3_bucket_path:               production-bucket-path
 backup_notifier_email_from:          production-sender-email
-backup_notifier_email_from_password: production-sender-email-password
-backup_notifier_email_to:            production-receiver-email
+backup_notifier_email_to:            production-email-to
+backup_notifier_email_user_name:     production-email-user-name
+backup_notifier_email_password:      production-email-password

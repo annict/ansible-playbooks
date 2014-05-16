@@ -60,5 +60,6 @@ backup_s3_secret_access_key:         staging-s3-secret-access-key
 backup_s3_bucket_name:               staging-s3-bucket-name
 backup_s3_bucket_path:               staging-bucket-path
 backup_notifier_email_from:          staging-sender-email
-backup_notifier_email_from_password: staging-sender-email-password
-backup_notifier_email_to:            staging-receiver-email
+backup_notifier_email_to:            staging-email-to
+backup_notifier_email_user_name:     staging-email-user-name
+backup_notifier_email_password:      staging-email-password
