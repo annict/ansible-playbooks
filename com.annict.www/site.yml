@@ -9,7 +9,7 @@
     - user
     - nginx
     - nodejs
-    - postgresql
+    - mysql
     - redis
     - ruby
     - rails

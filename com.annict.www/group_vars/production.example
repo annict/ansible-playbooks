@@ -23,14 +23,16 @@ newrelic_license_key: xxxxx....
 
 
 # =============================================================================
-# PostgreSQL
+# MySQL
 # =============================================================================
 
-postgresql_db_name:            production-db-name
-postgresql_user_name:          production-user-name
-postgresql_user_password:      production-user-password
-postgresql_root_user_name:     production-root-user-name
-postgresql_root_user_password: production-root-user-password
+mysql_db_name:            production-db-name
+mysql_root_user_name:     production-root-user-name
+mysql_root_user_password: production-root-user-password
+mysql_user_name:          production-user-name
+mysql_user_password:      production-user-password
+
+mysql_innodb_buffer_pool_size: production-innodb-buffer-pool-size
 
 
 # =============================================================================
