@@ -13,10 +13,10 @@ end
 God::Contacts::Email.defaults do |d|
   d.from_email      = ALERT_EMAIL_FROM
   d.from_name       = ALERT_EMAIL_FROM_NAME
-  d.server_host     = 'smtp.gmail.com'
+  d.server_host     = 'smtp.mandrillapp.com'
   d.server_port     = 587
   d.server_auth     = :plain
-  d.server_domain   = 'gmail.com'
+  d.server_domain   = 'mandrillapp.com'
   d.server_user     = ALERT_EMAIL_FROM
   d.server_password = ALERT_EMAIL_FROM_PASSWORD
 end

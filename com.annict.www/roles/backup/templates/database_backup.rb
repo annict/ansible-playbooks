@@ -63,12 +63,12 @@ Model.new(:database_backup, 'Annict データベースバックアップ') do
 
     mail.from                 = '{{ backup_notifier_email_from }}'
     mail.to                   = '{{ backup_notifier_email_to }}'
-    mail.address              = "smtp.gmail.com"
+    mail.address              = 'smtp.mandrillapp.com'
     mail.port                 = 587
-    mail.domain               = 'gmail.com'
+    mail.domain               = 'mandrillapp.com'
     mail.user_name            = '{{ backup_notifier_email_from }}'
     mail.password             = '{{ backup_notifier_email_from_password }}'
-    mail.authentication       = "plain"
+    mail.authentication       = 'plain'
     mail.encryption           = :starttls
   end
 
