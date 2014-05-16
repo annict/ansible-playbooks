@@ -12,19 +12,22 @@
 Model.new(:database_backup, 'Annict データベースバックアップ') do
 
   ##
-  # PostgreSQL [Database]
+  # MySQL [Database]
   #
-  database PostgreSQL do |db|
+  database MySQL do |db|
     # To dump all databases, set `db.name = :all` (or leave blank)
-    db.name               = '{{ postgresql_db_name }}'
-    db.username           = '{{ postgresql_user_name }}'
-    db.password           = '{{ postgresql_user_password }}'
+    db.name               = '{{ mysql_db_name }}'
+    db.username           = '{{ mysql_user_name }}'
+    db.password           = '{{ mysql_user_password }}'
     db.host               = 'localhost'
-    db.port               = 5432
-    # When dumping all databases, `skip_tables` and `only_tables` are ignored.
+    db.port               = 3306
+    db.socket             = '/var/run/mysqld/mysqld.sock'
+    # Note: when using `skip_tables` with the `db.name = :all` option,
+    # table names should be prefixed with a database name.
+    # e.g. ["db_name.table_to_skip", ...]
     # db.skip_tables        = ["skip", "these", "tables"]
     # db.only_tables        = ["only", "these", "tables"]
-    db.additional_options = ["-xc", "-E=utf8"]
+    db.additional_options = ["--quick", "--single-transaction"]
   end
 
   ##
