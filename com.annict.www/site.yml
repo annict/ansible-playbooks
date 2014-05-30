@@ -19,3 +19,4 @@
     - god
     - logrotate
     - backup
+    - swap_file

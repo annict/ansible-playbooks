@@ -1,0 +1,25 @@
+- name: スワップファイルを作成する
+  command: dd if=/dev/zero of=/swapfile bs=2048 count=512k
+  when: ansible_swaptotal_mb < 2
+
+- name: スワップ領域を作成する
+  command: mkswap /swapfile
+  when: ansible_swaptotal_mb < 2
+
+- name: マウントの設定を /etc/fstab に追加する
+  lineinfile: dest=/etc/fstab line='/swapfile       none    swap    sw      0       0'
+
+- name: スワップ領域を有効にする
+  command: swapon -a
+
+- name: Swappinessの設定 1
+  shell: echo 10 | tee /proc/sys/vm/swappiness
+
+- name: Swappinessの設定 2
+  shell: echo vm.swappiness = 10 | tee -a /etc/sysctl.conf
+
+- name: オーナー情報を修正する
+  command: chown root:root /swapfile
+
+- name: パーミッションを修正する
+  command: chmod 0600 /swapfile
