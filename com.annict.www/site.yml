@@ -14,7 +14,7 @@
     - ruby
     - rails
     - unicorn
-    - new_relic
+    - mackerel
     - deployment
     - god
     - logrotate
