@@ -8,6 +8,7 @@
     - user
     - swap_file
     - ruby
+    - new_relic
 
 - hosts: web
   user:  root
@@ -15,9 +16,9 @@
     - nginx
     - nodejs
     - rails
-    - unicorn
     - deployment
     - logrotate
+    - eye
 
 - hosts: db
   user:  root
@@ -25,4 +26,3 @@
     - mysql
     - redis
     - backup
-    - swap_file
