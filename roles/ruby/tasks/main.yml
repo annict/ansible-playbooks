@@ -63,4 +63,4 @@
   when:  ruby_installed|failed
 
 - name: Bundlerをインストールする
-  shell: gem install bundle --no-ri --no-rdoc && rbenv rehash
+  shell: RBENV_ROOT=/usr/local/rbenv rbenv exec gem install bundle --no-ri --no-rdoc
