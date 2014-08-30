@@ -1,5 +1,5 @@
 - name: Backup gemをインストールする
-  command: bash -lc 'gem install backup --no-ri --no-rdoc'
+  shell: RBENV_ROOT=/usr/local/rbenv rbenv exec gem install backup --no-ri --no-rdoc
 
 - name: Backup gemの設定ファイルを格納するディレクトリを作成する
   command: mkdir -p /root/Backup/models

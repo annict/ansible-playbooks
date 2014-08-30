@@ -9,7 +9,7 @@
 # For more information about Backup's components, see the documentation at:
 # http://meskyanichi.github.io/backup
 #
-Model.new(:database_backup, 'Annict データベースバックアップ') do
+Model.new(:database_backup, '{{ mysql_db_name }}') do
 
   ##
   # MySQL [Database]
