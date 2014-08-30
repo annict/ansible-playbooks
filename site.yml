@@ -1,22 +1,27 @@
 ---
-- name:  AnnictのWebサーバのセットアップ
-  hosts: web
+- hosts: all
   user:  root
-
   roles:
     - common
     - ntp
     - user
+    - swap_file
+    - ruby
+
+- hosts: web
+  user:  root
+  roles:
     - nginx
     - nodejs
-    - mysql
-    - redis
-    - ruby
     - rails
     - unicorn
-    - mackerel
     - deployment
-    - god
     - logrotate
+
+- hosts: db
+  user:  root
+  roles:
+    - mysql
+    - redis
     - backup
     - swap_file
