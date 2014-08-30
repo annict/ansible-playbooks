@@ -6,7 +6,7 @@
   apt:
     upgrade: full
 
-- name: サーバ作るのに必要そうなパッケージをインストールする
+- name: 必要そうなパッケージをインストールする
   apt:
     pkg:   '{{ item }}'
     state: installed
@@ -16,6 +16,7 @@
     - g++
     - git
     - language-pack-ja
+    - libcurl4-openssl-dev
     - make
     - python-software-properties
     - vim
