@@ -1,8 +1,9 @@
-[staging-web]
+[web]
 192.168.33.10
 
-[web:children]
-staging-web
+[db]
+192.168.33.11
 
 [staging:children]
-staging-web
+web
+db

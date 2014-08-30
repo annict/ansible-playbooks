@@ -1,8 +1,9 @@
-[production-web]
-123.456.789.0
+[web]
+192.168.33.10
 
-[web:children]
-production-web
+[db]
+192.168.33.11
 
 [production:children]
-production-web
+web
+db
