@@ -1,22 +1,17 @@
-- name: Backup gemをインストールする
-  command: bash -lc 'gem install backup --no-ri --no-rdoc'
-
-- name: Backup gemの設定ファイルを格納するディレクトリを作成する
-  command: mkdir -p /root/Backup/models
-
-- name: Backup gemの設定ファイルを配置する その1
+- name: サーバ起動時にiptablesを設定する
   template:
-    src:  config.rb
-    dest: /root/Backup/config.rb
+    src:  iptablesload.sh.j2
+    dest: /etc/network/if-pre-up.d/iptablesload.sh
+    mode: 755
 
-- name: Backup gemの設定ファイルを配置する その2
+- name: 設定スクリプトを配置する
   template:
-    src:  database_backup.rb
-    dest: /root/Backup/models/database_backup.rb
+    src:  iptables.sh.j2
+    dest: /root/iptables.sh
+    mode: 755
 
-- name: cronの設定をする
-  cron:
-    name:   'Backup at 4am every day'
-    hour:   '4'
-    minute: '0'
-    job:    '/bin/bash -lc "backup perform -t database_backup"'
+- name: 設定スクリプトを実行する
+  shell: /root/iptables.sh
+
+- name: 設定を保存する
+  shell: iptables-save > /etc/iptables.rules

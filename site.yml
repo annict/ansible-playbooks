@@ -4,6 +4,7 @@
   roles:
     - common
     - ntp
+    - iptables
     - user
     - swap_file
     - ruby

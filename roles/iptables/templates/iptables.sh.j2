@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# 全てのルールを削除する
+iptables -F
+
+# ICMPパケットを許可する
+iptables -A INPUT -p icmp -j ACCEPT
+
+# 確立しているコネクションとそれに関連したインバウンドを許可する
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# ローカルからの接続を許可する
+iptables -A INPUT -i lo -j ACCEPT
+
+# SSH接続を許可する
+iptables -A INPUT -p tcp --dport ssh -j ACCEPT
+
+# Annictで使用している他のサーバからの接続を許可する
+{% for host in groups['all'] %}
+iptables -A INPUT -s {{ host }} -j ACCEPT
+{% endfor %}
+
+# HTTP/HTTPS接続を許可する
+{% if 'nginx' in group_names %}
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+{% endif %}
+
+# 上記以外の接続を全て拒否する
+iptables -A INPUT -j DROP
