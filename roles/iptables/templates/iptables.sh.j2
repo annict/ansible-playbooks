@@ -21,7 +21,7 @@ iptables -A INPUT -s {{ host }} -j ACCEPT
 {% endfor %}
 
 # HTTP/HTTPS接続を許可する
-{% if 'nginx' in group_names %}
+{% if 'web' in group_names %}
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 {% endif %}
