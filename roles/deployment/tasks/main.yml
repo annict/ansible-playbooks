@@ -3,7 +3,6 @@
   command: mkdir -p {{ user_path }}/{{ item }}
   with_items:
     - shared/pids
-    - shared/settings/config
     - shared/sockets # Nginxで使用
 
 - name: sharedディレクトリ以下のユーザ:グループ権限を変更する
