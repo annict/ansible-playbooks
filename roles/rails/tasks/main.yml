@@ -3,5 +3,6 @@
     pkg:   '{{ item }}'
     state: installed
   with_items:
+    - mysql-client
     - libmysqlclient-dev
     - imagemagick
