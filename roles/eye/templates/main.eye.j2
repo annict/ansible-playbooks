@@ -1,0 +1,1 @@
+Eye.load('./apps/*.eye')

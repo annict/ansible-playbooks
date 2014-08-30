@@ -1,0 +1,24 @@
+RAILS_ENV = '{{ rails_env }}'
+APP_ROOT = '{{ user_path }}/current'
+
+def sidekiq_process(proxy, name)
+  rails_env = proxy.env['RAILS_ENV']
+
+  proxy.process(name) do
+    start_command "rbenv exec bundle exec sidekiq -e #{rails_env} -C ./config/sidekiq.yml"
+    pid_file '{{ user_path }}/shared/pids/sidekiq.pid'
+    stdall 'log/sidekiq.log'
+    daemonize true
+    stop_signals [:QUIT, 5.seconds, :TERM, 5.seconds, :KILL]
+
+    check :cpu, every: 30, below: 100, times: 5
+    check :memory, every: 30, below: 300.megabytes, times: 5
+  end
+end
+
+Eye.application :sidekiq do
+  working_dir File.expand_path(File.join(APP_ROOT))
+  env 'RAILS_ENV' => RAILS_ENV
+
+  sidekiq_process(self, :sidekiq)
+end
