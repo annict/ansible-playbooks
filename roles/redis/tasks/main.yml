@@ -1,14 +1,14 @@
 - name: Redisをダウンロードする
-  command: wget http://download.redis.io/releases/redis-2.8.3.tar.gz
+  command: wget http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz
 
 - name: パッケージを解凍する
-  command: tar xvzf redis-2.8.3.tar.gz
+  command: tar xvzf redis-{{ redis_version }}.tar.gz
 
 - name: makeする
-  command: make chdir=redis-2.8.3
+  command: make chdir=redis-{{ redis_version }}
 
 - name: スクリプトファイルをコピーする
-  command: cp -f redis-2.8.3/src/{{ item }} /usr/local/bin/
+  command: cp -f redis-{{ redis_version }}/src/{{ item }} /usr/local/bin/
   with_items:
     - redis-server
     - redis-cli
