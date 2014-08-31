@@ -7,7 +7,7 @@
 - name: 作成したユーザからSSHでログインできるようにする
   authorized_key:
     user: '{{ user_name }}'
-    key:  '{{ lookup("file", "~/.ssh/id_rsa.pub") }}'
+    key:  '{{ lookup("file", user_key_path) }}'
 
 - name: 一部コマンドでsudoが使えるようにする
   template:

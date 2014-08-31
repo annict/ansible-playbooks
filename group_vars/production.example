@@ -5,6 +5,7 @@
 
 user_name: production-user-name
 user_path: /home/production-user-name
+user_key_path: ~/.ssh/id_rsa
 
 
 # =============================================================================
