@@ -17,7 +17,7 @@ iptables -A INPUT -p tcp --dport ssh -j ACCEPT
 
 # Annictで使用している他のサーバからの接続を許可する
 {% for host in groups['all'] %}
-iptables -A INPUT -s {{ host }} -j ACCEPT
+iptables -A INPUT -s {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }} -j ACCEPT
 {% endfor %}
 
 # HTTP/HTTPS接続を許可する
