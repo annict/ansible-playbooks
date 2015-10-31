@@ -1,15 +1,15 @@
 ---
-- name: ユーザの作成
+- name: ユーザを作成する
   user:
-    name:  '{{ user_name }}'
+    name: "{{ user_name }}"
     shell: /bin/bash
 
 - name: 作成したユーザからSSHでログインできるようにする
   authorized_key:
-    user: '{{ user_name }}'
-    key:  '{{ lookup("file", user_key_path) }}'
+    user: "{{ user_name }}"
+    key: "{{ lookup('file', user_key_path) }}"
 
 - name: 一部コマンドでsudoが使えるようにする
   template:
-    src:  sudoer
-    dest: /etc/sudoers.d/{{ user_name }}
+    src: sudoer
+    dest: "/etc/sudoers.d/{{ user_name }}"

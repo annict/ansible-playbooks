@@ -1,11 +1,11 @@
 - name: ntpをインストールする
   apt:
-    name:  ntp
+    name: ntp
     state: present
 
 - name: ntp.confを編集する
   template:
-    src:  ntp.conf
+    src: ntp.conf
     dest: /etc/ntp.conf
 
 - name: ntpを再起動する
@@ -18,5 +18,5 @@
 
 - name: タイムゾーンを変更する (/etc/timezoneを編集する)
   template:
-    src:  timezone
+    src: timezone
     dest: /etc/timezone

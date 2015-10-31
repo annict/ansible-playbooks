@@ -1,53 +1,53 @@
 - name: rbenvをダウンロードする
   git:
-    repo:           git://github.com/sstephenson/rbenv.git
+    repo: git://github.com/sstephenson/rbenv.git
     accept_hostkey: yes
-    dest:           /usr/local/rbenv
-    version:        v0.4.0
+    dest: /usr/local/rbenv
+    version: v0.4.0
 
 - name: 実行ファイルのシンボリックリンクを作成する
   file:
-    path:  /usr/local/bin/rbenv
-    src:   /usr/local/rbenv/bin/rbenv
+    path: /usr/local/bin/rbenv
+    src: /usr/local/rbenv/bin/rbenv
     state: link
 
 - name: 初期化スクリプトを配置する
   template:
-    src:   rbenv.sh.j2
-    dest:  /etc/profile.d/rbenv.sh
+    src: rbenv.sh.j2
+    dest: /etc/profile.d/rbenv.sh
     owner: root
     group: root
     mode:  0755
 
 - name: ruby-buildがインストールされているか確認する
-  command:       test -x /usr/local/bin/ruby-build
-  register:      rbuild_present
+  command: test -x /usr/local/bin/ruby-build
+  register: rbuild_present
   ignore_errors: yes
 
 - name: 一時ディレクトリを作成する
-  command:  mktemp -d
+  command: mktemp -d
   register: tempdir
-  when:     rbuild_present|failed
+  when: rbuild_present|failed
 
 - name: ruby-buildをダウンロードする
   git:
     repo: git://github.com/sstephenson/ruby-build.git
-    dest: '{{ tempdir.stdout }}/ruby-build'
+    dest: "{{ tempdir.stdout }}/ruby-build"
   when: rbuild_present|failed
 
 - name: ruby-buildをインストールする
   command: ./install.sh chdir={{ tempdir.stdout }}/ruby-build
-  when:    rbuild_present|failed
+  when: rbuild_present|failed
 
 - name: 一時ディレクトリを削除する
   file:
-    path:  '{{ tempdir.stdout }}'
+    path: "{{ tempdir.stdout }}"
     state: absent
   when: rbuild_present|failed
 
 - name: Rubyがインストールされているか確認する
-  shell:         RBENV_ROOT=/usr/local/rbenv rbenv versions | grep {{ ruby_version }}
-  register:      ruby_installed
+  shell: RBENV_ROOT=/usr/local/rbenv rbenv versions | grep {{ ruby_version }}
+  register: ruby_installed
   ignore_errors: yes
 
 - name: Rubyをインストールする

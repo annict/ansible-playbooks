@@ -1,28 +1,16 @@
 ---
-- hosts: all
+- hosts: app
   user:  root
   roles:
-    - common
+    - base
     - ntp
-    - iptables
     - user
     - swap_file
+    - iptables
     - ruby
-    - new_relic
-
-- hosts: web
-  user:  root
-  roles:
     - nginx
     - nodejs
-    - rails
+    - postgresql
+    - imagemagick
     - deployment
     - logrotate
-    - eye
-
-- hosts: db
-  user:  root
-  roles:
-    - mysql
-    - redis
-    - backup

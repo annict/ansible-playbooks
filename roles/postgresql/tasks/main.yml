@@ -1,0 +1,25 @@
+- name: PostgreSQLをインストールする
+  apt:
+    pkg: "{{ item }}"
+  with_items:
+    - postgresql
+    - postgresql-contrib
+    - libpq-dev
+
+- name: PostgreSQLの設定を更新する
+  template:
+    src: postgresql.conf.j2
+    dest: /etc/postgresql/9.3/main/postgresql.conf
+    owner: postgres
+    group: postgres
+    mode: 0644
+
+- name: ユーザ `postgres` にパスワードを設定する
+  postgresql_user:
+    name: postgres
+    password: {{ postgresql_user_password }}
+
+- name: PostgreSQLを再起動する
+  service:
+    name: postgresql
+    state: restarted

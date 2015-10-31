@@ -1,6 +1,6 @@
 - name: Nginxをインストールするためのリポジトリを追加する
   apt_repository:
-    repo: 'ppa:nginx/stable'
+    repo: "ppa:nginx/stable"
 
 - name: apt-get update
   apt:
@@ -12,10 +12,10 @@
 
 - name: Nginxの設定ファイルを更新する
   template:
-    src:  nginx.conf
+    src: nginx.conf
     dest: /etc/nginx/nginx.conf
 
 - name: Nginxを起動する
   service:
-    name:  nginx
+    name: nginx
     state: restarted

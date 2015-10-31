@@ -1,12 +1,12 @@
 - name: サーバ起動時にiptablesを設定する
   template:
-    src:  iptablesload.sh.j2
+    src: iptablesload.sh.j2
     dest: /etc/network/if-pre-up.d/iptablesload.sh
     mode: 755
 
 - name: 設定スクリプトを配置する
   template:
-    src:  iptables.sh.j2
+    src: iptables.sh.j2
     dest: /root/iptables.sh
     mode: 755
 

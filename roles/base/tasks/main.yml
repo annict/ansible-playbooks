@@ -8,7 +8,7 @@
 
 - name: 必要そうなパッケージをインストールする
   apt:
-    pkg:   '{{ item }}'
+    pkg: "{{ item }}"
     state: installed
   with_items:
     - build-essential

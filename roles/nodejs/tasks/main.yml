@@ -1,6 +1,6 @@
 - name: Node.jsをインストールするためのリポジトリを追加する
   apt_repository:
-    repo: 'ppa:chris-lea/node.js'
+    repo: "ppa:chris-lea/node.js"
 
 - name: apt-get update
   apt:
