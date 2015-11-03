@@ -2,22 +2,66 @@
   apt:
     pkg: "{{ item }}"
   with_items:
-    - postgresql
-    - postgresql-contrib
-    - libpq-dev
+    - postgresql-9.3
+    - postgresql-contrib-9.3
+    - libpq-dev # Ansibleの `postgresql_user` モジュールで試用
+    - python-psycopg2 # Ansibleの `postgresql_user` モジュールで試用
+
+- name: 一時的にリモートからpostgresユーザへのアクセスを許可する
+  template:
+    src: pg_hba_tmp.conf.j2
+    dest: /etc/postgresql/9.3/main/pg_hba.conf
+    owner: postgres
+    group: postgres
+    mode: 0640
+
+- name: PostgreSQLを再起動する
+  service:
+    name:  postgresql
+    state: restarted
+
+- name: adminユーザを作成する
+  postgresql_user:
+    name: "{{ postgresql_admin_name }}"
+    password: "{{ postgresql_admin_password }}"
+    role_attr_flags: CREATEDB,CREATEROLE,REPLICATION,SUPERUSER
+
+- name: アプリケーションで使用するユーザを作成する
+  postgresql_user:
+    name: "{{ postgresql_user_name }}"
+    password: "{{ postgresql_user_password }}"
+
+- name: アプリケーションで使用するデータベースを作成する
+  postgresql_db:
+    name: "{{ postgresql_db_name }}"
+    owner: "{{ postgresql_user_name }}"
+    encoding: UTF-8
+    lc_collate: C # ロケール無し
+    lc_ctype: C # ロケール無し
+    template: template0
+
+- name: アプリケーションで使用するユーザにデータベースを操作する権限を与える
+  postgresql_privs:
+    db: "{{ postgresql_db_name }}"
+    type: database
+    priv: ALL
+    role: "{{ postgresql_user_name }}"
 
 - name: PostgreSQLの設定を更新する
   template:
     src: postgresql.conf.j2
     dest: /etc/postgresql/9.3/main/postgresql.conf
+    owner: "{{ postgresql_admin_name }}"
+    group: "{{ postgresql_admin_name }}"
+    mode: 0640
+
+- name: pg_hba.conf を更新する
+  template:
+    src: pg_hba.conf.j2
+    dest: /etc/postgresql/9.3/main/pg_hba.conf
     owner: postgres
     group: postgres
-    mode: 0644
-
-- name: ユーザ `postgres` にパスワードを設定する
-  postgresql_user:
-    name: postgres
-    password: {{ postgresql_user_password }}
+    mode: 0640
 
 - name: PostgreSQLを再起動する
   service:

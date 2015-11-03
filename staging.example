@@ -1,9 +1,0 @@
-[web]
-192.168.33.10
-
-[db]
-192.168.33.11
-
-[staging:children]
-web
-db
