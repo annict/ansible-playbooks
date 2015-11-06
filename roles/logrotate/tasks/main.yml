@@ -10,3 +10,4 @@
   with_items:
     - nginx
     - rails_shared
+  when: "'app' in group_names"

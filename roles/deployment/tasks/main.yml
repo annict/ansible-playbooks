@@ -2,8 +2,8 @@
 - name: sharedディレクトリを作成する
   command: mkdir -p {{ user_path }}/{{ item }}
   with_items:
-    - shared/pids
-    - shared/sockets # Nginxで使用
+    - shared/tmp/pids # Pumaで使用
+    - shared/tmp/sockets # Pumaで使用
 
 - name: sharedディレクトリ以下のユーザ:グループ権限を変更する
   command: chown -R {{ user_name }}:{{ user_name }} {{ user_path }}/shared

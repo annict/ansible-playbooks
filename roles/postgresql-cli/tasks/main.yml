@@ -1,0 +1,6 @@
+- name: PostgreSQL Clientをインストールする
+  apt:
+    pkg: "{{ item }}"
+  with_items:
+    - postgresql-client-9.3
+    - libpq-dev

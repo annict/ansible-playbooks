@@ -21,7 +21,7 @@ iptables -A INPUT -s {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }} -j 
 {% endfor %}
 
 # HTTP/HTTPS接続を許可する
-{% if 'web' in group_names %}
+{% if 'app' in group_names %}
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 {% endif %}

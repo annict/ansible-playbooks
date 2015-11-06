@@ -1,5 +1,5 @@
 ---
-- hosts: app
+- hosts: all
   user: root
   roles:
     - base
@@ -7,10 +7,19 @@
     - user
     - swap_file
     - iptables
+    - logrotate
     - ruby
+
+- hosts: db
+  user: root
+  roles:
+    - postgresql
+
+- hosts: app
+  user: root
+  roles:
     - nginx
     - nodejs
-    - postgresql
+    - postgresql-cli
     - imagemagick
     - deployment
-    - logrotate
