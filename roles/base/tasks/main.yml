@@ -15,7 +15,7 @@
     - curl
     - g++
     - git
-    - language-pack-ja=1:14.04+20140410
+    - language-pack-ja
     - libcurl4-openssl-dev
     - make
     - python-software-properties
