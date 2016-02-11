@@ -1,0 +1,17 @@
+---
+- hosts: app
+  user: root
+  roles:
+    - base
+    - ntp
+    - user
+    - swap_file
+    - iptables
+    - mackerel
+    - ruby
+    - nginx
+    - nodejs
+    - postgresql-cli
+    - imagemagick
+    - deployment
+    - logrotate

@@ -1,0 +1,4 @@
+- name: ping.rbを配置する
+  template:
+    src: ping.rb.j2
+    dest: /root/scripts/ping.rb

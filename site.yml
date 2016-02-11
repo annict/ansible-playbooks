@@ -1,25 +1,3 @@
 ---
-- hosts: all
-  user: root
-  roles:
-    - base
-    - ntp
-    - user
-    - swap_file
-    - iptables
-    - logrotate
-    - ruby
-
-- hosts: db
-  user: root
-  roles:
-    - postgresql
-
-- hosts: app
-  user: root
-  roles:
-    - nginx
-    - nodejs
-    - postgresql-cli
-    - imagemagick
-    - deployment
+- include: app.yml
+- include: marie.yml

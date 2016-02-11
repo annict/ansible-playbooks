@@ -1,0 +1,10 @@
+---
+- hosts: marie
+  user: root
+  roles:
+    # - base
+    # - ntp
+    # - swap_file
+    # - iptables
+    - ruby
+    - marie
