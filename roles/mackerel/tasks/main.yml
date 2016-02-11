@@ -1,0 +1,14 @@
+- name: リポジトリを追加する
+  shell: "curl -fsSL https://mackerel.io/assets/files/scripts/setup-apt.sh | sh"
+
+- name: mackerel-agent をインストールする
+  apt:
+    pkg: mackerel-agent
+
+- name: /etc/mackerel-agent/mackerel-agent.conf を作成する
+  template:
+    src:  mackerel-agent.conf.j2
+    dest: /etc/mackerel-agent/mackerel-agent.conf
+
+- name: mackerel-agent を起動する
+  command: /etc/init.d/mackerel-agent start
