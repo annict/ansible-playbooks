@@ -1,3 +1,7 @@
+- name: Hostname
+  hostname:
+    name: "{{ inventory_hostname_short }}"
+
 - name: apt-get update
   apt:
     update_cache: yes
