@@ -1,3 +1,4 @@
 .DS_Store
 
-production
+/group_vars/app
+/group_vars/marie
